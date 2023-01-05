@@ -24,7 +24,7 @@ def fcfs_scheduling(processes):
     # inicjalizujemy zmienne
     current_time = 0
     waiting_times = []
-
+    counter = 0
     # dla każdego procesu
     for i,(arrival_time, execution_time) in enumerate(processes):
         # obliczamy czas oczekiwania
@@ -32,11 +32,12 @@ def fcfs_scheduling(processes):
         waiting_times.append(waiting_time)
         # dodajemy czas wykonania procesu do bieżącego czasu
         current_time += execution_time
+        counter += 1
 
     # obliczamy średni czas oczekiwania
     average_waiting_time = sum(waiting_times) / len(waiting_times)
 
-    return average_waiting_time
+    return (average_waiting_time, counter)
 
 def lcfs_scheduling(processes):
     # sortujemy procesy według czasu przybycia
@@ -46,6 +47,7 @@ def lcfs_scheduling(processes):
     # inicjalizujemy zmienne
     current_time = 0
     waiting_times = []
+    counter = 0
 
     # dla każdego procesu
     for i,(arrival_time, execution_time) in enumerate(processes):
@@ -54,12 +56,14 @@ def lcfs_scheduling(processes):
         waiting_times.append(waiting_time)
         # dodajemy czas wykonania procesu do bieżącego czasu
         current_time += execution_time
-
+        counter += 1
     # obliczamy średni czas oczekiwania
     average_waiting_time = sum(waiting_times) / len(waiting_times)
 
-    return average_waiting_time
+    return (average_waiting_time, counter)
 
-processes = generate_processes(5,10,3)#[(2,6),(5,2),(1,8),(0,3),(4,4)]
-average_waiting_time = fcfs_scheduling(processes)
-print('średni czas oczekiwania: ', average_waiting_time)
+processes = generate_processes(5,10,3)
+#[(2,6),(5,2),(1,8),(0,3),(4,4)]
+avg_time, time = fcfs_scheduling(processes)
+avg_time2, time2 = lcfs_scheduling(processes)
+print('średni czas oczekiwania: ', avg_time,time,avg_time2,time2)
