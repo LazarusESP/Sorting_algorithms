@@ -43,15 +43,15 @@ def lfu_page_sort(pages, capacity):
     hit_rate = (hits / (hits + miss)) * 100
     return {'hit_rate' : hit_rate,'cache': list(cache.keys())}
 
-def generate_pages(page_amount):
+def generate_pages(page_amount, mean, std_dev):
     pages = []
     for i in range(page_amount):
-        pages.append(random.randint(0,9))
+        pages.append(int(random.normalvariate(mean, std_dev)))
     return pages
 
-#pages = generate_pages(20)
-pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
-capacity = 3
+pages = generate_pages(100)
+#pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
+capacity = 10
 
 #LRU
 for page in pages:
