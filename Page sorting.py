@@ -67,3 +67,4 @@ print(result_lru['cache'])
 result_lfu = lfu_page_sort(pages, capacity)
 print(f"Hit rate: {result_lfu['hit_rate']:.2f}%") 
 print(result_lfu['cache'])
+#dzien doberek
