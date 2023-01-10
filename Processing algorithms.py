@@ -91,3 +91,4 @@ with open(r'C:\Users\User\Documents\data.txt', "a") as f:
     f.write(str(time) + '\n')
     f.write(str(avg_time2) + '\n')
     f.write(str(time2) + '\n')
+#dzien doberek
