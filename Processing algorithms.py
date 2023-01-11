@@ -15,7 +15,7 @@ def generate_processes(num_processes, mean_execution_time, std_dev_arrival_time,
     # losujemy czas wykonywania z rozkładu normalnego
     execution_time = int(random.normalvariate(mean_execution_time, std_dev_arrival_time))
     # dodajemy proces do listy
-    processes.append((arrival_time, execution_time))
+    processes.append((abs(arrival_time), abs(execution_time)))
 
   return processes
 
@@ -65,7 +65,11 @@ def lcfs_scheduling(processes):
 
     return (average_waiting_time, counter)
 #generator(ilosc, srednia, odchylenie standardowe, czy zerować = False)
-processes = generate_processes(5,10,3)
+generator_amount = 100
+generator_mean = 10
+generator_std_dev = 5
+is_zero = False
+processes = generate_processes(generator_amount,generator_mean,generator_std_dev, is_zero)
 processes = sorted(processes, key=lambda x: x[0])
 for process in processes:
     print(process, end=' ')
@@ -81,14 +85,19 @@ execution_output = []
 for i, (arrival_time, execution_time) in enumerate(processes):
     arrival_output.append(arrival_time)
     execution_output.append(execution_time)
-arrival_output = ' '.join(map(str,arrival_output))
-execution_output = ' '.join(map(str,execution_output))
+arrival_output_str = ' '.join(map(str,arrival_output))
+execution_output_str = ' '.join(map(str,execution_output))
 with open(r'C:\Users\User\Documents\data.txt', "a") as f:
     #f.write('\n' + output + '\n')
-    f.write('\narrival times: ' + arrival_output + '\n')
-    f.write('execution times: ' + execution_output + '\n')
+    f.write('\ngenerator amount: ' + str(generator_amount) + '\n')
+    f.write('generator mean: ' + str(generator_mean) + '\n')
+    f.write('generator standard deviation: ' + str(generator_std_dev) + '\n')
+    f.write('arrival times: ' + arrival_output_str + '\n')
+    f.write('execution times: ' + execution_output_str + '\n')
     f.write('average waiting time fcfs: ' + str(avg_time) + '\n')
     f.write('time in the loop fcfs: ' + str(time) + '\n')
     f.write('average waiting time lcfs: ' + str(avg_time2) + '\n')
     f.write('time in the loop lcfs: ' + str(time2) + '\n')
 #dzien doberek
+#print('\nsrednia arrival: ',sum(arrival_output)/len(arrival_output))
+#print('\nsrednia execution: ',sum(execution_output)/len(execution_output))
