@@ -52,8 +52,8 @@ def generate_pages(page_amount, mean, std_dev, min_value=0, max_value=9):
         pages.append(rand_num)
     return pages
 page_amount = 100
-page_mean = 5
-page_std_dev = 2
+page_mean = 20
+page_std_dev = 10
 min_value = 0
 max_value = 9
 pages = generate_pages(page_amount, page_mean, page_std_dev, min_value, max_value)
