@@ -98,6 +98,8 @@ with open(r'C:\Users\User\Documents\data_processing.txt', "a") as f:
     f.write('time in the loop fcfs: ' + str(time) + '\n')
     f.write('average waiting time lcfs: ' + str(avg_time2) + '\n')
     f.write('time in the loop lcfs: ' + str(time2) + '\n')
+
 #dzien doberek
+
 #print('\nsrednia arrival: ',sum(arrival_output)/len(arrival_output))
 #print('\nsrednia execution: ',sum(execution_output)/len(execution_output))
