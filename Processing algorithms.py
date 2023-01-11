@@ -87,7 +87,7 @@ for i, (arrival_time, execution_time) in enumerate(processes):
     execution_output.append(execution_time)
 arrival_output_str = ' '.join(map(str,arrival_output))
 execution_output_str = ' '.join(map(str,execution_output))
-with open(r'C:\Users\User\Documents\data.txt', "a") as f:
+with open(r'C:\Users\User\Documents\data_processing.txt', "a") as f:
     #f.write('\n' + output + '\n')
     f.write('\ngenerator amount: ' + str(generator_amount) + '\n')
     f.write('generator mean: ' + str(generator_mean) + '\n')
