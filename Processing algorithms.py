@@ -71,11 +71,11 @@ def lcfs_scheduling(processes):
     return (average_waiting_time, average_turnaround_time, counter)
 #generator(ilosc, srednia execution, odchylenie standardowe execution,srednia arrival, odchylenie standardowe arrival,
 #  czy zerować = False)
-generator_amount = 1000
-execution_mean = 30
+generator_amount = 10
+execution_mean = 10
 execution_std_dev = 5
 arrival_mean = 20
-arrival_std_dev = 10
+arrival_std_dev = 2
 is_zero = False
 processes = generate_processes(generator_amount, execution_mean, execution_std_dev,arrival_mean, arrival_std_dev, is_zero)
 processes = sorted(processes, key=lambda x: x[0])

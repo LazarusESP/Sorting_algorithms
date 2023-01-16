@@ -43,20 +43,25 @@ def lfu_page_sort(pages, capacity):
     hit_rate = (hits / (hits + miss)) * 100
     return {'hit_rate' : hit_rate,'cache': list(cache.keys())}
 
-def generate_pages(page_amount, mean, std_dev, min_value=0, max_value=9):
+def generate_pages(page_amount, mean, std_dev, min_value=0, max_value=9, isRand = False):
     pages = []
     for i in range(page_amount):
-        rand_num = int(random.normalvariate(mean,std_dev))
-        while not (min_value <= rand_num <= max_value):
-            rand_num = int(random.normalvariate(mean, std_dev))
+        if isRand:
+            rand_num = random.randint(min_value, max_value)
+        else:
+            rand_num = int(random.normalvariate(mean,std_dev))
+            while not (min_value <= rand_num <= max_value):
+                rand_num = int(random.normalvariate(mean, std_dev))
         pages.append(rand_num)
     return pages
-page_amount = 1000
+
+page_amount = 10
 page_mean = 10
 page_std_dev = 5
 min_value = 0
-max_value = 20
-pages = generate_pages(page_amount, page_mean, page_std_dev, min_value, max_value)
+max_value = 9
+isRand = True
+pages = generate_pages(page_amount, page_mean, page_std_dev, min_value, max_value, isRand)
 #pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 6]
 capacity = 3
 
@@ -90,5 +95,5 @@ with open(r'C:\Users\Piotr\Documents\data_page.txt', "a") as f:
 
 with open(r'C:\Users\Piotr\Documents\data_page.csv', "a", newline = '') as csvfile:
     thewriter = csv.writer(csvfile)
-    data = [page_amount,capacity, result_lru['hit_rate'], result_lfu['hit_rate']]
+    data = [page_amount,capacity, round(result_lru['hit_rate'],2), round(result_lfu['hit_rate'],2)]
     thewriter.writerow(data)
