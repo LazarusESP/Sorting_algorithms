@@ -1,6 +1,6 @@
 import random
 
-def generate_processes(num_processes, mean_execution_time, std_dev_arrival_time,zero_arrival = False):
+def generate_processes(num_processes, mean_execution_time, std_dev_execution_time, mean_arrival_time, std_dev_arrival_time, zero_arrival = False):
   # lista procesów
   processes = []
   # początkowy czas przyjścia
@@ -11,9 +11,9 @@ def generate_processes(num_processes, mean_execution_time, std_dev_arrival_time,
     if zero_arrival:
       arrival_time = 0
     else:
-      arrival_time = int(random.normalvariate(mean_execution_time, std_dev_arrival_time))
+      arrival_time = int(random.normalvariate(mean_arrival_time, std_dev_arrival_time))
     # losujemy czas wykonywania z rozkładu normalnego
-    execution_time = int(random.normalvariate(mean_execution_time, std_dev_arrival_time))
+    execution_time = int(random.normalvariate(mean_execution_time, std_dev_execution_time))
     # dodajemy proces do listy
     processes.append((abs(arrival_time), abs(execution_time)))
 
@@ -64,12 +64,15 @@ def lcfs_scheduling(processes):
     average_waiting_time = sum(waiting_times) / len(waiting_times)
 
     return (average_waiting_time, counter)
-#generator(ilosc, srednia, odchylenie standardowe, czy zerować = False)
-generator_amount = 100
-generator_mean = 10
-generator_std_dev = 5
+#generator(ilosc, srednia execution, odchylenie standardowe execution,srednia arrival, odchylenie standardowe arrival,
+#  czy zerować = False)
+generator_amount = 1000
+execution_mean = 10
+execution_std_dev = 5
+arrival_mean = 10
+arrival_std_dev = 2
 is_zero = False
-processes = generate_processes(generator_amount,generator_mean,generator_std_dev, is_zero)
+processes = generate_processes(generator_amount, execution_mean, execution_std_dev,arrival_mean, arrival_std_dev, is_zero)
 processes = sorted(processes, key=lambda x: x[0])
 for process in processes:
     print(process, end=' ')
@@ -87,11 +90,13 @@ for i, (arrival_time, execution_time) in enumerate(processes):
     execution_output.append(execution_time)
 arrival_output_str = ' '.join(map(str,arrival_output))
 execution_output_str = ' '.join(map(str,execution_output))
-with open(r'C:\Users\User\Documents\data_processing.txt', "a") as f:
+with open(r'C:\Users\Piotr\Documents\data_processing.txt', "a") as f:
     #f.write('\n' + output + '\n')
     f.write('\ngenerator amount: ' + str(generator_amount) + '\n')
-    f.write('generator mean: ' + str(generator_mean) + '\n')
-    f.write('generator standard deviation: ' + str(generator_std_dev) + '\n')
+    f.write('execution mean: ' + str(execution_mean) + '\n')
+    f.write('execution standard deviation: ' + str(execution_std_dev) + '\n')
+    f.write('arrival mean: ' + str(arrival_mean) + '\n')
+    f.write('arrival standard deviation: ' + str(arrival_std_dev) + '\n')
     f.write('arrival times: ' + arrival_output_str + '\n')
     f.write('execution times: ' + execution_output_str + '\n')
     f.write('average waiting time fcfs: ' + str(avg_time) + '\n')

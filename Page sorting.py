@@ -77,7 +77,7 @@ str_lru_cache = str(result_lru['cache'])
 str_lfu_result = str(result_lfu['hit_rate']) + '%'
 str_lfu_cache = str(result_lfu['cache'])
 
-with open(r'C:\Users\User\Documents\data_page.txt', "a") as f:
+with open(r'C:\Users\Piotr\Documents\data_page.txt', "a") as f:
     #f.write('\n' + output + '\n')
     f.write('\ngenerator page amount: ' + str(page_amount) + '\n')
     f.write('generator page mean: ' + str(page_mean) + '\n')
