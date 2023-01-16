@@ -1,7 +1,7 @@
 from collections import OrderedDict
 from collections import Counter
 import random
-
+import csv
 def lru_page_sort(pages, capacity):
     cache = OrderedDict()
     hits = 0
@@ -51,11 +51,11 @@ def generate_pages(page_amount, mean, std_dev, min_value=0, max_value=9):
             rand_num = int(random.normalvariate(mean, std_dev))
         pages.append(rand_num)
     return pages
-page_amount = 100
-page_mean = 20
-page_std_dev = 10
+page_amount = 1000
+page_mean = 10
+page_std_dev = 5
 min_value = 0
-max_value = 9
+max_value = 20
 pages = generate_pages(page_amount, page_mean, page_std_dev, min_value, max_value)
 #pages = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 6]
 capacity = 3
@@ -87,3 +87,8 @@ with open(r'C:\Users\Piotr\Documents\data_page.txt', "a") as f:
     f.write('posortowane lru: ' + str_lru_cache + '\n')
     f.write('hit rate lfu: ' + str_lfu_result + '\n')
     f.write('posortowane lfu: ' + str_lfu_cache + '\n')
+
+with open(r'C:\Users\Piotr\Documents\data_page.csv', "a", newline = '') as csvfile:
+    thewriter = csv.writer(csvfile)
+    data = [page_amount,capacity, result_lru['hit_rate'], result_lfu['hit_rate']]
+    thewriter.writerow(data)
