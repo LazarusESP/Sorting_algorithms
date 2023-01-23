@@ -95,26 +95,12 @@ for i, (arrival_time, execution_time) in enumerate(processes):
     execution_output.append(execution_time)
 arrival_output_str = ' '.join(map(str,arrival_output))
 execution_output_str = ' '.join(map(str,execution_output))
-with open(r'C:\Users\Piotr\Documents\data_processing.txt', "a") as f:
-    #f.write('\n' + output + '\n')
-    f.write('\ngenerator amount: ' + str(generator_amount) + '\n')
-    f.write('execution mean: ' + str(execution_mean) + '\n')
-    f.write('execution standard deviation: ' + str(execution_std_dev) + '\n')
-    f.write('arrival mean: ' + str(arrival_mean) + '\n')
-    f.write('arrival standard deviation: ' + str(arrival_std_dev) + '\n')
-    f.write('arrival times: ' + arrival_output_str + '\n')
-    f.write('execution times: ' + execution_output_str + '\n')
-    f.write('average waiting time fcfs: ' + str(avg_time) + '\n')
-    f.write('average turnaround time fcfs: ' + str(avg_turnaround) + '\n')
-    f.write('average waiting time lcfs: ' + str(avg_time2) + '\n')
-    f.write('average turnaround time lcfs: ' + str(avg_turnaround2) + '\n')
-
 
 with open(r'C:\Users\Piotr\Documents\data_processing.csv', "a", newline = '') as csvfile:
     thewriter = csv.writer(csvfile)
     data = [generator_amount, avg_time, avg_time2,avg_turnaround , avg_turnaround2]
     thewriter.writerow(data)
-#dzien doberek
+
 
 #print('\nsrednia arrival: ',sum(arrival_output)/len(arrival_output))
 #print('\nsrednia execution: ',sum(execution_output)/len(execution_output))
