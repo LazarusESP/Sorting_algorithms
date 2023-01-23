@@ -82,17 +82,6 @@ str_lru_cache = str(result_lru['cache'])
 str_lfu_result = str(result_lfu['hit_rate']) + '%'
 str_lfu_cache = str(result_lfu['cache'])
 
-with open(r'C:\Users\Piotr\Documents\data_page.txt', "a") as f:
-    #f.write('\n' + output + '\n')
-    f.write('\ngenerator page amount: ' + str(page_amount) + '\n')
-    f.write('generator page mean: ' + str(page_mean) + '\n')
-    f.write('generator standard deviation: ' + str(page_std_dev) + '\n')
-    f.write('capacity: ' + str(capacity) + '\n')
-    f.write('hit rate lru: ' + str_lru_result + '\n')
-    f.write('posortowane lru: ' + str_lru_cache + '\n')
-    f.write('hit rate lfu: ' + str_lfu_result + '\n')
-    f.write('posortowane lfu: ' + str_lfu_cache + '\n')
-
 with open(r'C:\Users\Piotr\Documents\data_page.csv', "a", newline = '') as csvfile:
     thewriter = csv.writer(csvfile)
     data = [page_amount,capacity, round(result_lru['hit_rate'],2), round(result_lfu['hit_rate'],2)]
